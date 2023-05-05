@@ -2,6 +2,7 @@ import { Container, Box, Input, Button, Text } from '@chakra-ui/react';
 import { FormControl } from '@chakra-ui/react';
 import { GlobalContext } from './context/GlobalWrapper';
 import { AiOutlinePlus, AiOutlineSearch } from "react-icons/ai";
+
 import Row from './components/Row';
 import {
   Table,
@@ -11,10 +12,11 @@ import {
   Th,
   TableContainer,
 } from '@chakra-ui/react'
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState} from 'react';
+import DrawerExample from './components/DrawerExample';
 
 function App() {
-  const { FetchUsers, Search, users } = useContext(GlobalContext);
+  const { FetchUsers, Search, users, isOpen, onOpen, onClose  } = useContext(GlobalContext);
   const[query, setQuery] = useState('');
   useEffect(() => {
     FetchUsers();
@@ -56,6 +58,7 @@ function App() {
                   maxW="300px" 
                   minW="150px"
                   leftIcon={<AiOutlinePlus fontSize={'20px'} /> }
+                  onClick={onOpen}
                   >
                    Add User
                   </Button>
@@ -89,6 +92,7 @@ function App() {
                   </Tbody>
                 </Table>
             </TableContainer>
+            <DrawerExample />
         </Box>
       </Container>
     </div>

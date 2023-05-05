@@ -4,7 +4,7 @@ import { AiFillDelete, AiFillEdit, } from "react-icons/ai";
 import { GlobalContext } from '../context/GlobalWrapper';
 
 const Row = ({id, fullname, email, age, country}) => {
-    const { Delete } = useContext(GlobalContext);
+    const { Delete, onOpen, FindOne} = useContext(GlobalContext);
   return (
     <Tr>
         <Td>
@@ -17,7 +17,10 @@ const Row = ({id, fullname, email, age, country}) => {
         <Td>
             <Box display="flex" gap="1">
                <Button colorScheme={"blue"}>
-                    <AiFillEdit />
+                    <AiFillEdit onClick={()=>{
+                      onOpen();
+                      FindOne(id);
+                    }} />
                </Button>
                <Button colorScheme={"red"} onClick={() => Delete(id)}>
                     <AiFillDelete />
